@@ -1,0 +1,30 @@
+
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+a#navi:link {
+	text-decoration: none;
+	color: white;
+}
+
+a#navi:visited {
+	text-decoration: none;
+	color: white;
+}
+
+div#input:hover, div#output:hover {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+div.infoboard {
+	width: 95%; 
+	margin: auto;
+	text-align:center;
+}
+
+table#test th {
+	text-align:center;	
+}
+

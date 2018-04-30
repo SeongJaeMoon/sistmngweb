@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+   http://www.springframework.org/schema/mvc 
+   http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<!-- Spring MVC - Annotation Controller Example -->
+	<context:component-scan base-package="com.test.*" />
+
+	<!-- Spring MVC - Internal Resource View Resolver Example -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+ 	
+	<!-- 데이터베이스 연결 정보 관리 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@211.63.89.86:1521:xe" />
+		<property name="username" value="admin1234" />
+		<property name="password" value="1234" />
+	</bean> 
+ 
+	<!-- <bean id="courseJDBCTemplate" class="com.test.dao.CourseJDBCTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+	
+	<!-- <bean id="instructorJDBCTemplate" class="com.test.dao.InstructorJDBCTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="studentJDBCTemplate" class="com.test.dao.StudentJDBCTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="loginJDBCTemplate" class="com.test.dao.LoginJDBCTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+	
+	<!-- 정적 자원 연결을 위한 설정 추가 -->
+	<mvc:annotation-driven /> 
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+
+</beans> 
