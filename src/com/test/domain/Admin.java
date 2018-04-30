@@ -41,8 +41,4 @@ public class Admin {
 	private int courseCount; //수강횟수
 	private int num; //번호부여 변수
 	private int count_openSub; //개설 과목 등록 갯수
-	private int courseNumber; //과정수강횟수
-	private String failureStatus; //탈락여부
-	private int totalScore, numberOfStuHaveScore; //총점, 성적 등록인원		
-	
 }
