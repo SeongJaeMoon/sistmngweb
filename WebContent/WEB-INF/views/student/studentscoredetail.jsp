@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath" value="<%=request.getContextPath()%>"></c:set>
 
+<c:set var="contextPath" value="<%=request.getContextPath()%>"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title></title>	
+<title>SIST_쌍용교육센터</title>	
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -23,6 +23,9 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<%-- <script 
+	src="${contextPath}/resources/script/util.js"></script>	 --%>
+
 <style>
 th {
 	text-align:center;		
@@ -36,45 +39,66 @@ th {
 		
 		$('[data-toggle=popover').popover();	
 		
+		/* $("a.toggler").on("mouseover", function(){
+			 var temp = $(this).find('img');
+			$(this).children('img').attr("src", getBookImg()); 
+			code = $(this).parent().attr("id");
+			$(this).attr("data-content", '<img src="javascript:getBookImg('+code+')" style = "width:100%; height:30%;">')
+		}); */
+		
 		$("a#resetPw").on("click", function(){
 			$("div#myPWFormModal").modal();
 		});
-	/* 
-		data-toggle="modal"
-			data-target="#myModal1" */
+		
+			var datas = '${studentsubject}'
+			var subjectList = new Array();
+			var valueList = new Array();
+			<c:forEach items="${studentsubject}" var="item">
+			subjectList.push("${item.subjectName}");
+			var wr = "${item.writingScore}"
+			var pr = "${item.practiceScore}"
+			var at = "${item.attendanceScore}"
+			valueList.push(parseInt(wr)+parseInt(pr)+parseInt(at));
+			</c:forEach>
+		
+			ret = "[";
+			for (var i = 0; i < subjectList.length; i++) {
+			    ret += '{ "y":'+valueList[i]+', "label":"'+subjectList[i]+'"}' + (i == subjectList.length - 1 ? "" : ",");
+			    
+			}
+			ret += "]";
+		
+			var temp = JSON.parse(ret);
+		
+			var chart = new CanvasJS.Chart("barChart", {
+				animationEnabled: true,
+				title:{
+					text:"과목별 성적 그래프"
+				},
+				axisX:{
+					valueFormatString: "#,##0.##",
+					interval: 1
+				},
+				axisY2:{
+					interlacedColor: "rgba(211, 211, 211,.2)",
+					gridColor: "rgba(211, 211, 211,.1)",
+					title: "총점"
+				},
+				data: [{
+					type: "bar",
+					name: "과목",
+					axisYType: "secondary",
+					color: "#778899",
+					type: "column",
+					dataPoints: temp
+					
+				}]
+				
+			});
+			chart.render();
+		
+	/* data-toggle="modal" data-target="#myModal1" */
 	});
-</script>
-
-<script>
-window.onload = function () {
-	
-var chart = new CanvasJS.Chart("barChart", {
-	animationEnabled: true,
-	
-	title:{
-		text:"과목별 성적 그래프"
-	},
-	axisX:{
-		interval: 1
-	},
-	axisY2:{
-		interlacedColor: "rgba(211, 211, 211,.2)",
-		gridColor: "rgba(211, 211, 211,.1)",
-		title: "총점"
-	},
-	data: [{
-		type: "bar",
-		name: "과목",
-		axisYType: "secondary",
-		color: "#778899",
-		dataPoints: [
-			{ y: 100, label: "자바" },
-			{ y: 90, label: "파이썬" }
-		]
-	}]
-});
-chart.render();
-}
 </script>
 
 </head>
@@ -114,8 +138,7 @@ chart.render();
 		<div class="infoboard">
 			<div class="panel panel-default">
 				<div class="panel-body" style="text-align: center;">
-					<h4>[OCO001] JAVA를 응용한 사물인터넷 IOT 개발자 양성과정 (2018-01-01 ~
-						2018-06-30)</h4>
+					<h4>[${ocu}] ${octitle} (${dates})</h4>
 				</div>
 			</div>
 			<table class="table table-bordered text-center" >
@@ -138,30 +161,35 @@ chart.render();
 					</tr>
 				</thead>
 				<tbody>
+					
+					 <c:forEach var="sd" items="${studentsubject}" varStatus="idx">
 					<tr>
-						<td>1</td>
-						<td>SUB001</td>
-						<td>자바</td>
-						<td>2017-11-01~<br>2018-01-01
+						<td>${idx.count}</td>
+						<td>${sd.openSubCode}</td>
+						<td>${sd.subjectName}</td>
+						<td>${sd.openSubStartDate}&#126;<br>${sd.openSubCloseDate}
 						</td>
 						<!-- data-toggle 부분에 회원 번호, ISBN 넣어야 함. -->
+						<td><a class="toggler" href="#" data-toggle="popover" data-placement="top"
+							data-trigger="hover" data-html="true"
+							data-content = '<img src="${sd.isbn}" style = "width:100%; height:30%;">'>
+							
+							${sd.bookName}</a></td>
 						<td><a href="#" data-toggle="popover" data-placement="top"
 							data-trigger="hover" data-html="true"
-							data-content="<img src='${contextPath}/resources/pictures/ajax_book.jpg' style = 'width:100%; height:30%;'>">
-								이것이 자바다</a></td>
-						<td><a href="#" data-toggle="popover" data-placement="top"
-							data-trigger="hover" data-html="true"
-							data-content="<img src='${contextPath}/resources/pictures/avatar.png' style = 'width:100%; height:30%;'>">이민종</a></td>
-						<td>70</td>
-						<td>70</td>
-						<td>10</td>
-						<td>10</td>
-						<td>20</td>
-						<td>20</td>
-						<td>2017-11-03</td>
-						<td><a href="#">java1.zip</a></td>
+							data-content="<img src='${contextPath}/resources/pictures/instructor/avatar.png' style = 'width:100%; height:30%;'>">${sd.name_}</a></td>
+						<td>${sd.attDistribution}</td>
+						<td>${sd.attendanceScore}</td>
+						<td>${sd.pracDistribution}</td>
+						<td>${sd.practiceScore}</td>
+						<td>${sd.wriDistribution}</td>
+						<td>${sd.writingScore}</td>
+						<td>${sd.testDate}</td>
+						<td><a href="#">${sd.testFile}</a></td>
 					</tr>
-					<tr>
+					</c:forEach>
+					
+					<%-- <tr>
 						<td>1</td>
 						<td>SUB002</td>
 						<td>파이썬</td>
@@ -183,7 +211,8 @@ chart.render();
 						<td>20</td>
 						<td>2017-11-03</td>
 						<td><a href="#">java1.zip</a></td>
-					</tr>
+					</tr> --%>
+
 				</tbody>
 			</table>
 			
@@ -196,6 +225,7 @@ chart.render();
 	<div id = "modalForm">
 		
 	</div>
+	
 	<script src="${contextPath}/resources/script/canvasjs.min.js"></script>
 </body>
 

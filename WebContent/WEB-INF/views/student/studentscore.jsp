@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath" value="<%=request.getContextPath()%>"></c:set>
 
+<c:set var="contextPath" value="<%=request.getContextPath()%>"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,11 +38,28 @@ th{
 		$("a#resetPw").on("click", function() {
 			$("div#myPWFormModal").modal();
 		});
+		
+		$("a.oc").click(function(){
+			courseDate = $(this).closest('tr').find('td:nth-child(4)').text();
+			code = $(this).closest('tr').find('td:nth-child(2)').text();
+			openCourse = $(this).text();
+			
+			var hiddenForm = document.hiddenForm;
+			hiddenForm.ocu.value = code;
+			hiddenForm.dates.value = courseDate;
+			hiddenForm.octitle.value = openCourse;
+			hiddenForm.submit();
+		});
 	});
 </script>
 
 </head>
 <body>
+	<form role="form" name="hiddenForm" action="${contextPath}/student/studentscoredetail" method="post">
+		<input type = "hidden" name="ocu" value =""/>
+		<input type = "hidden" name="dates" value = ""/>
+		<input type = "hidden" name="octitle" value = ""/>
+	</form>
 	<div class="container">
 
 		<div class="container-fluid">
@@ -93,10 +110,21 @@ th{
 						<th>과정명</th>
 						<th>기간</th>
 						<th>강의실</th>
+						<th>수료여부</th>
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach var = "sc" items = "${studentscore}" varStatus = "idx">
 					<tr>
+						<td>${idx.count}</td>
+						<td>${sc.openCourseCode}</td>
+						<td><a class="oc" href="#">${sc.courseName}</a></td>
+						<td>${sc.openCourseStartDate}&#126;${sc.openCourseStartDate}</td>
+						<td>${sc.className}</td>		
+						<td>${sc.completionCheck}</td>						
+					</tr>
+				</c:forEach>
+					<%-- <tr>
 						<td>1</td>
 						<td>COU001</td>
 						<td><a href="${contextPath}/student/studentscoredetail">JAVA를
@@ -111,7 +139,7 @@ th{
 								빅데이터 개발자 양성과정</a></td>
 						<td>2018-01-01~2018-06-01</td>
 						<td>2강의실</td>
-					</tr>
+					</tr> --%>
 				</tbody>
 			</table>
 		</div>

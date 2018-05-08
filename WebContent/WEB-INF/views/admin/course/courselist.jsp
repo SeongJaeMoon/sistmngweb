@@ -185,7 +185,7 @@ th{
 					</tr>
 				</thead>
 				<tbody id = "list">
-					<tr>
+				 <tr>
 						<td><input type="checkbox"  name="checkbox" value ="OCU001"></td>
 						<td>1</td>
 						<td>OCU001</td>

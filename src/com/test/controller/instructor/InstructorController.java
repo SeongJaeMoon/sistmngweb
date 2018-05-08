@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;	
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.transaction.annotation.Transactional;
 
 @Controller
 @RequestMapping(value = "/instructor", method = RequestMethod.POST)
@@ -48,5 +49,7 @@ public class InstructorController {
 	public String testMng() {
 		return "instructor/test/testmng";
 	}
+	
+//	@Transactional
 
 }

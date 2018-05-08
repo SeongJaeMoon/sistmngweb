@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class CourseController {
 	
-	
-	
 	// 홈 > 과정 관리
 	@RequestMapping("/courselist")
 	public String courselist() {

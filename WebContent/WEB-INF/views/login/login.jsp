@@ -53,7 +53,7 @@
 		<div class="center-block" style="width: 300px; margin-top: 150px">
 			<h3>welcome to TEAM One!</h3>
 			<!-- DB 처리 필요. -->
-			<form action="${contextPath}/inst/main" method="post">
+			<form action="${contextPath}/login/loginRequest" method="post">
 				<div class="input-group">
 					<span class="input-group-addon"><i
 						class="glyphicon glyphicon-user"></i></span> <input id="id_" type="text"

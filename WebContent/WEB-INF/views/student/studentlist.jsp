@@ -60,7 +60,7 @@
 						[수강생]님이 로그인 했습니다</a></li>
 				<li><a id = "resetPw" href="#"><span class="glyphicon glyphicon-wrench"></span>
 						비밀번호변경</a></li>
-				<li><a href="${contextPath}/logoutform.jsp"><span class="glyphicon glyphicon-log-out"></span>
+				<li><a href="${contextPath}/login/logoutform"><span class="glyphicon glyphicon-log-out"></span>
 						로그아웃</a></li>
 
 
@@ -81,22 +81,22 @@
 					<div class="media-left">
 					
 					<!-- 학생 사진 -->
-						<img src="${contextPath}/resources/pictures/avatar.png" class="media-object img-circle"
+						<img src="${contextPath}/resources/pictures/instructor/avatar.png" class="media-object img-circle"
 							style="width: 300px">
 					</div>
 					
 					<!-- 학생 개인정보 -->
 					<div class="media-body">
 						<h4 class="media-heading" style="margin-left:25px; font-size:15px; color:DarkGray;">수강생명</h4>
-						<p style="margin-left:25px; font-size:22px; margin-top:15px;"><b>성재문</b></p>
+						<p style="margin-left:25px; font-size:22px; margin-top:15px;"><b>${studentinfo.name_}</b></p>
 						<h4 class="media-heading" style="margin-left:25px; font-size:15px; color:DarkGray;">주민번호</h4>
-						<p style="margin-left:25px; font-size:22px; margin-top:15px;"><b>111111-1111111</b></p>
+						<p style="margin-left:25px; font-size:22px; margin-top:15px;"><b>${studentinfo.ssn}</b></p>
 						<h4 class="media-heading" style="margin-left:25px; font-size:15px; color:DarkGray;">전화번호</h4>
-						<p style="margin-left:25px; font-size:22px; margin-top:15px;"><b>010-1111-1111</b></p>
+						<p style="margin-left:25px; font-size:22px; margin-top:15px;"><b>${studentinfo.phone }</b></p>
 						<h4 class="media-heading" style="margin-left:25px; font-size:15px; color:DarkGray;">등록일</h4>
-						<p style="margin-left:25px; font-size:22px; margin-top:15px;"><b>2018.04.10</b></p>
+						<p style="margin-left:25px; font-size:22px; margin-top:15px;"><b>${studentinfo.studentRegDate}</b></p>
 						<h4 class="media-heading" style="margin-left:25px; font-size:15px; color:DarkGray;">수강횟수</h4>
-						<p style="margin-left:25px; font-size:22px; margin-top:15px;"><b>1</b></p>
+						<p style="margin-left:25px; font-size:22px; margin-top:15px;"><b>${studentinfo.count_}</b></p>
 					</div>
 				</div>
 	</div>

@@ -1,13 +1,14 @@
 package com.test.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.Data;
 import lombok.Builder;
 
 @Data
 @Builder
 public class Student {
-		@Getter
+		@Getter @Setter
 		//회원고유번호(pk), 이름, 주민번호 뒷 자리, 전화번호
 		private String mid, name_, ssn, phone;
 		//수강생 등록일
@@ -34,11 +35,14 @@ public class Student {
 		//배점코드(pk), 출석배점, 필기배점, 실기배점
 		private String distributionCode;
 		private int attDistribution, wriDistribution, pracDistribution;
-		//성적코드(pk), 출결점수, 필기점수, 실기점수
+		//성적코드(pk), 출결점수, 필기점수, 실기점수, 총점
 		private String scoreCode;
 		private int attendanceScore, writingScore, practiceScore;
+		private int totalScore;
 		//수료여부 (수료, 중도탈락, 수강중)
 		private String completionCheck;
 		// 수강횟수
 		private int count_;
+		//책 isbn
+		private String isbn;
 }

@@ -9,7 +9,7 @@ import lombok.Builder;
 public class Instructor {
 	@Getter
 	// 회원고유번호(pk),회원구분, 이름, 주민번호, 전화번호, 회원등록일
-		private String mid, memberStatus, name_, ssn, phone;
+		private String mid, memberStatus, name_, ssn, phone, memberRegDate;
 		private String studentRegDate;
 		// 강사 등록일
 		private String instructorRegDate;
@@ -35,15 +35,17 @@ public class Instructor {
 		private String studentStatus;
 		// 탈락코드(pk), 탈락날짜
 		private String failureCode;
-		private String failureDate;
+		private String finalFailureDate;
 		// 시험코드(pk), 시험날짜, 시험문제파일
 		private String testCode, testFile;
 		private String testDate;
 		// 배점코드(pk), 출석배점, 필기배점, 실기배점
 		private String distributionCode;
-		private int attendanceDistribution, writingDistribution, practiceDistribution;
+		private int attDistribution, wriDistribution, pracDistribution;
 		// 성적코드(pk)
 		private String scoreCode;
 		// 성적 출결점수 ,필기점수, 실기점수, 총점, 성적 등록인원
-		private int attendanceScore, writingScore, practiceScore, totalScore, numberOfStuHaveScore;
+		private int attendanceScore, writingScore, practiceScore, totalScore, number_of_student;
+		// 해당 강사의 강의를 수강중인 수강생 수
+		private int studentnumber;
 }
